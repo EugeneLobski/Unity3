@@ -47,8 +47,7 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         switch (_state) {
             case State.Normal:
                 Move();
@@ -82,10 +81,10 @@ public class CharacterController2D : MonoBehaviour
 
         if (isMoving) {
             _lastMoveDirection = _moveDrirection;
-            _animator.SetFloat("horizontalMovement", _moveDrirection.x);
-            _animator.SetBool("isMoving", true);
+            _animator.SetFloat(AnimatorCharacterController2D.HorizontalMovement, _moveDrirection.x);
+            _animator.SetBool(AnimatorCharacterController2D.IsMoving, true);
         } else {
-            _animator.SetBool("isMoving", false);
+            _animator.SetBool(AnimatorCharacterController2D.IsMoving, false);
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -95,7 +94,7 @@ public class CharacterController2D : MonoBehaviour
             _rushDirection = _lastMoveDirection;
             _rushCurrentSpeed = RushSpeed;
             _state = State.Rush;
-            _animator.SetTrigger("isRushing");
+            _animator.SetTrigger(AnimatorCharacterController2D.IsRushing);
         }
     }
 
