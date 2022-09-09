@@ -8,9 +8,7 @@ public class CoinPicker : MonoBehaviour
     private int _coin = 0;
 
     private void OnTriggerEnter2D (Collider2D other) {
-        Coin coin = other.GetComponent<Coin>();
-        
-        if (coin != null) {
+        if (other.TryGetComponent(out Coin coin)) {
             _coin++;
             Destroy(other.gameObject);
         }
