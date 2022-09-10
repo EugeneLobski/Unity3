@@ -26,7 +26,7 @@ public class CharacterController2D : MonoBehaviour
     private Vector3 _moveDrirection;
     private Vector3 _rushDirection;
     private Vector3 _lastMoveDirection;
-    private bool _isDashButtonDown = false;
+    private bool _isDashing = false;
     private State _state;
 
     private void Awake() {
@@ -48,7 +48,8 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         switch (_state) {
             case State.Normal:
                 Move();
@@ -89,7 +90,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.F))
-            _isDashButtonDown = true;
+            _isDashing = true;
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             _rushDirection = _lastMoveDirection;
@@ -109,7 +110,7 @@ public class CharacterController2D : MonoBehaviour
     private void Move () {
         _rigidbody2D.velocity = _moveDrirection * MoveSpeed;
 
-        if (_isDashButtonDown) {
+        if (_isDashing) {
             Vector3 dashPosition = transform.position + _lastMoveDirection * _dashAmount;
 
             RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, _lastMoveDirection, _dashAmount, _dashLayerMask);
@@ -118,7 +119,7 @@ public class CharacterController2D : MonoBehaviour
                 dashPosition = raycastHit2D.point;
 
             _rigidbody2D.MovePosition(dashPosition);
-            _isDashButtonDown = false;
+            _isDashing = false;
         }
     }
 }

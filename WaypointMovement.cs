@@ -10,10 +10,10 @@ public class WaypointMovement : MonoBehaviour
     [SerializeField] private float _speed;
     
     private Transform[] _wayPoints;
-    private int _currentPoint;
+    private int _currentPoint = 0;
 
-    private void Awake() {
-        _wayPoints = transform.GetComponentInParent<Spawner>().GetPoints();
+    public void Init (Transform[] wayPoints) {
+        _wayPoints = wayPoints;
     }
 
     private void Update() {

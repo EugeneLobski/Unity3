@@ -6,19 +6,19 @@ public class CoinSpawner : MonoBehaviour
 {
     const float SpawnInterval = 1f;
     
-    [SerializeField] private Coin _coinPrefab;
+    [SerializeField] private Coin _prefab;
 
     private Transform[] _spawnPoints;
     private WaitForSeconds _spawnDelay = new WaitForSeconds(SpawnInterval);
 
     private void Awake () {
         _spawnPoints = GetComponentsInChildren<Transform>();
-        StartCoroutine(SpawnCoin(_spawnDelay));
+        StartCoroutine(Spawn(_spawnDelay));
     }
 
-    private IEnumerator SpawnCoin(WaitForSeconds delay) {
+    private IEnumerator Spawn(WaitForSeconds delay) {
         while (true) {
-            Coin newCoin = Instantiate(_coinPrefab, _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
+            Coin newCoin = Instantiate(_prefab, _spawnPoints[Random.Range(0, _spawnPoints.Length)].position, Quaternion.identity);
             yield return delay;
         }
     }
