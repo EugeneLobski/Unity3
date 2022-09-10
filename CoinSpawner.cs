@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
 {
-    [SerializeField] private Coin _coinPrefab;
-    
     const float SpawnInterval = 1f;
+    
+    [SerializeField] private Coin _coinPrefab;
 
     private Transform[] _spawnPoints;
     private WaitForSeconds _spawnDelay = new WaitForSeconds(SpawnInterval);
