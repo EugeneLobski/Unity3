@@ -18,8 +18,6 @@ public class WaypointMovement : MonoBehaviour
 
     private void Update() {
         Transform target = _wayPoints[_currentPoint];
-        var direction = (target.position - transform.position).normalized;
-        
         transform.position = Vector3.MoveTowards(transform.position, target.position, _speed * Time.deltaTime);
         
         if (transform.position == target.position) {
